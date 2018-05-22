@@ -1,8 +1,14 @@
 package com.wyc.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.alibaba.fastjson.JSONObject;
+import com.wyc.service.UserService;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,24 +27,31 @@ import java.util.Objects;
  * @author haima
  */
 @Controller
+@RequestMapping(value = "/user")
 public class LoginController {
+    @Autowired
+    private UserService userService;
 
-
-    @CrossOrigin
-    @RequestMapping(value = "/api/login", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public Result login(@Valid @RequestBody User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            String message = String.format("登陆失败，详细信息[%s]。", bindingResult.getFieldError().getDefaultMessage());
-            return ResultFactory.buildFailResult(message);
-        }
-        if (!Objects.equals("javalsj", user.getName()) || !Objects.equals("123456", user.getPassword())) {
-            String message = String.format("登陆失败，详细信息[用户名、密码信息不正确]。");
-            return ResultFactory.buildFailResult(message);
-        }
-        return ResultFactory.buildSuccessResult("登陆成功。");
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    boolean userLogin(@Param("username")String username, @Param("password")String password) {
+        System.out.println(username);
+        System.out.println(password);
+        boolean verify = userService.verifyUser(username, password);
+        return verify;
     }
 
-
+    //注册方法
+    @ResponseBody
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@Param("username")String username, @Param("password")String password, @Param("password2")String password2) {
+        JSONObject jsonResult=new JSONObject();
+        if (password.equals(password2)) {
+            return userService.registerUser(username, password2);
+        }
+        jsonResult.put("code","0");
+        jsonResult.put("msg","请输入密码一致");
+        return jsonResult.toJSONString();
+    }
 }
 

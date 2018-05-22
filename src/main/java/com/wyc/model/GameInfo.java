@@ -13,9 +13,11 @@ public class GameInfo {
 
     private String language;
 
-    private String gamecategory;
+    private String gameimg;
 
     private String system;
+
+    private String gamecategory;
 
     private String cpu;
 
@@ -73,12 +75,12 @@ public class GameInfo {
         this.language = language == null ? null : language.trim();
     }
 
-    public String getGamecategory() {
-        return gamecategory;
+    public String getGameimg() {
+        return gameimg;
     }
 
-    public void setGamecategory(String gamecategory) {
-        this.gamecategory = gamecategory == null ? null : gamecategory.trim();
+    public void setGameimg(String gameimg) {
+        this.gameimg = gameimg == null ? null : gameimg.trim();
     }
 
     public String getSystem() {
@@ -87,6 +89,14 @@ public class GameInfo {
 
     public void setSystem(String system) {
         this.system = system == null ? null : system.trim();
+    }
+
+    public String getGamecategory() {
+        return gamecategory;
+    }
+
+    public void setGamecategory(String gamecategory) {
+        this.gamecategory = gamecategory == null ? null : gamecategory.trim();
     }
 
     public String getCpu() {
