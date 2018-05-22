@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyc.mapper.GameInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.wyc.model.GameInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gameName" property="gamename" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="productCompany" property="productcompany" jdbcType="VARCHAR" />
+    <result column="publishCompany" property="publishcompany" jdbcType="VARCHAR" />
+    <result column="language" property="language" jdbcType="VARCHAR" />
+    <result column="gameCategory" property="gamecategory" jdbcType="VARCHAR" />
+    <result column="system" property="system" jdbcType="VARCHAR" />
+    <result column="cpu" property="cpu" jdbcType="VARCHAR" />
+    <result column="ram" property="ram" jdbcType="VARCHAR" />
+    <result column="rom" property="rom" jdbcType="VARCHAR" />
+    <result column="gpu" property="gpu" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gameName, introduction, productCompany, publishCompany, language, gameCategory, 
+    system, cpu, ram, rom, gpu
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gameInfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="selectAllGame" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from gameInfo
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gameInfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wyc.model.GameInfo" >
+    insert into gameInfo (id, gameName, introduction, 
+      productCompany, publishCompany, language, 
+      gameCategory, system, cpu, 
+      ram, rom, gpu)
+    values (#{id,jdbcType=INTEGER}, #{gamename,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{productcompany,jdbcType=VARCHAR}, #{publishcompany,jdbcType=VARCHAR}, #{language,jdbcType=VARCHAR}, 
+      #{gamecategory,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, #{cpu,jdbcType=VARCHAR}, 
+      #{ram,jdbcType=VARCHAR}, #{rom,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyc.model.GameInfo" >
+    insert into gameInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gamename != null" >
+        gameName,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="productcompany != null" >
+        productCompany,
+      </if>
+      <if test="publishcompany != null" >
+        publishCompany,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="gamecategory != null" >
+        gameCategory,
+      </if>
+      <if test="system != null" >
+        system,
+      </if>
+      <if test="cpu != null" >
+        cpu,
+      </if>
+      <if test="ram != null" >
+        ram,
+      </if>
+      <if test="rom != null" >
+        rom,
+      </if>
+      <if test="gpu != null" >
+        gpu,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gamename != null" >
+        #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="productcompany != null" >
+        #{productcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="publishcompany != null" >
+        #{publishcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecategory != null" >
+        #{gamecategory,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null" >
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="cpu != null" >
+        #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="ram != null" >
+        #{ram,jdbcType=VARCHAR},
+      </if>
+      <if test="rom != null" >
+        #{rom,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu != null" >
+        #{gpu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyc.model.GameInfo" >
+    update gameInfo
+    <set >
+      <if test="gamename != null" >
+        gameName = #{gamename,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="productcompany != null" >
+        productCompany = #{productcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="publishcompany != null" >
+        publishCompany = #{publishcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="gamecategory != null" >
+        gameCategory = #{gamecategory,jdbcType=VARCHAR},
+      </if>
+      <if test="system != null" >
+        system = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="cpu != null" >
+        cpu = #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="ram != null" >
+        ram = #{ram,jdbcType=VARCHAR},
+      </if>
+      <if test="rom != null" >
+        rom = #{rom,jdbcType=VARCHAR},
+      </if>
+      <if test="gpu != null" >
+        gpu = #{gpu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wyc.model.GameInfo" >
+    update gameInfo
+    set gameName = #{gamename,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      productCompany = #{productcompany,jdbcType=VARCHAR},
+      publishCompany = #{publishcompany,jdbcType=VARCHAR},
+      language = #{language,jdbcType=VARCHAR},
+      gameCategory = #{gamecategory,jdbcType=VARCHAR},
+      system = #{system,jdbcType=VARCHAR},
+      cpu = #{cpu,jdbcType=VARCHAR},
+      ram = #{ram,jdbcType=VARCHAR},
+      rom = #{rom,jdbcType=VARCHAR},
+      gpu = #{gpu,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
