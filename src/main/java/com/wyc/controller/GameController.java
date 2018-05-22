@@ -3,7 +3,6 @@ package com.wyc.controller;
 
 import com.wyc.model.GameInfo;
 import com.wyc.service.GameService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +21,8 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+
     @ResponseBody
     @RequestMapping(value = "/queryById/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public GameInfo queryOneById(@PathVariable("id")  Integer id){
