@@ -27,6 +27,10 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="queryCommentById" resultType="com.wyc.model.Comment" parameterType="java.lang.Integer" >
+    SELECT b.name, a.`comment` FROM commentInfo a JOIN `user` b ON a.u_id = b.id WHERE a.g_id = #{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectAllGame" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -47,6 +51,13 @@
       #{gameimg,jdbcType=VARCHAR}, #{system,jdbcType=VARCHAR}, #{gamecategory,jdbcType=VARCHAR}, 
       #{cpu,jdbcType=VARCHAR}, #{ram,jdbcType=VARCHAR}, #{rom,jdbcType=VARCHAR}, #{gpu,jdbcType=VARCHAR}
       )
+  </insert>
+
+  <insert id="insertComment">
+    insert into commentInfo (u_id, comment, g_id
+    )
+    values (#{userId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{gameId,jdbcType=INTEGER}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.wyc.model.GameInfo" >
     insert into gameInfo

@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author haima
+ */
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
+    @Override
     public boolean verifyUser(String username, String password) {
         List<User> users = userMapper.findByName(username);
         if (users.isEmpty()) {
@@ -27,6 +31,7 @@ public class UserServiceImpl implements UserService{
         return false;
     }
 
+    @Override
     public String registerUser(String username, String password2) {
         JSONObject jsonResult=new JSONObject();
         if (userMapper.findByName(username).isEmpty()) {
