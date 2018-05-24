@@ -3,9 +3,8 @@ package com.wyc.controller;
 
 import com.wyc.model.Comment;
 import com.wyc.model.GameInfo;
+import com.wyc.model.HardWare;
 import com.wyc.service.GameService;
-import org.apache.coyote.OutputBuffer;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +33,18 @@ public class GameController {
     @RequestMapping(value = "/queryCommentById/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public List<Comment> queryCommentById(@PathVariable("id")  Integer id){
         return gameService.queryCommentById(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/queryHardWareById/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    public HardWare queryHardWareById(@PathVariable("id")  Integer id){
+        return gameService.queryHardWareById(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/queryHardWareAll/{pageNum}/{pageSize}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    public List<HardWare> queryAllHardWare(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
+        return gameService.AllHardWare(pageNum, pageSize);
     }
 
     @ResponseBody
