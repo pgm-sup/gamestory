@@ -37,7 +37,7 @@
   <insert id="insertUser">
     insert into user (id, name, password
     )
-    values (id, #{username,jdbcType=VARCHAR}, #{password2,jdbcType=VARCHAR}
+    values (id, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
     )
   </insert>
 

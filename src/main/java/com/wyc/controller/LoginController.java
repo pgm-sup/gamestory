@@ -32,14 +32,8 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("password2")String password2) {
-        JSONObject jsonResult=new JSONObject();
-        if (password.equals(password2)) {
-            return userService.registerUser(username, password2);
-        }
-        jsonResult.put("code","0");
-        jsonResult.put("msg","请输入密码一致");
-        return jsonResult.toJSONString();
+    public String register(@RequestParam("username")String username, @RequestParam("password")String password) {
+        return userService.registerUser(username, password);
     }
 }
 

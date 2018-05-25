@@ -32,10 +32,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String registerUser(String username, String password2) {
+    public String registerUser(String username, String password) {
         JSONObject jsonResult=new JSONObject();
         if (userMapper.findByName(username).isEmpty()) {
-            userMapper.insertUser(username, password2);
+            userMapper.insertUser(username, password);
             jsonResult.put("code","1");
             jsonResult.put("msg",username + "注册成功");
             return jsonResult.toJSONString();
