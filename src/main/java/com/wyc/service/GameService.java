@@ -1,6 +1,8 @@
 package com.wyc.service;
 
+import com.wyc.model.Comment;
 import com.wyc.model.GameInfo;
+import com.wyc.model.HardWare;
 
 import java.util.List;
 
@@ -13,4 +15,12 @@ public interface GameService {
 
 
     List<GameInfo> findAllGame(int pageNum, int pageSize);
+
+    List<Comment> queryCommentById(Integer id);
+
+    int insertComment(int userId, String comment, int gameId);
+
+    HardWare queryHardWareById(Integer id);
+
+    List<HardWare> AllHardWare(int pageNum, int pageSize);
 }

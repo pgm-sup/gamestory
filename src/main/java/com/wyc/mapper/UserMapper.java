@@ -1,11 +1,14 @@
 package com.wyc.mapper;
 
-import java.util.List;
 import com.wyc.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+/**
+ * @author haima
+ */
 @Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,9 +23,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
-    List<User> findByNameAndPassword(String name, String password);
+    List<User> findByName(@Param("username") String username);
 
-    List<User> findByName(String name);
-
-    int insertUser(@Param("username") String username, @Param("password2")String password2);
+    int insertUser(@Param("username") String username, @Param("password") String password);
 }

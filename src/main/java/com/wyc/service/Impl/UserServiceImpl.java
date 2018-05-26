@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author haima
+ */
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
+    @Override
     public boolean verifyUser(String username, String password) {
         List<User> users = userMapper.findByName(username);
         if (users.isEmpty()) {
@@ -27,10 +31,11 @@ public class UserServiceImpl implements UserService{
         return false;
     }
 
-    public String registerUser(String username, String password2) {
+    @Override
+    public String registerUser(String username, String password) {
         JSONObject jsonResult=new JSONObject();
         if (userMapper.findByName(username).isEmpty()) {
-            userMapper.insertUser(username, password2);
+            userMapper.insertUser(username, password);
             jsonResult.put("code","1");
             jsonResult.put("msg",username + "注册成功");
             return jsonResult.toJSONString();

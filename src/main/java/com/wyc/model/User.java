@@ -1,11 +1,14 @@
 package com.wyc.model;
 
+/**
+ * @author haima
+ */
 public class User {
     private Integer id;
-
     private String name;
 
     private String password;
+
 
     public Integer getId() {
         return id;
@@ -29,14 +32,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                '}';
     }
 }

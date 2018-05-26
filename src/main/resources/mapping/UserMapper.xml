@@ -16,7 +16,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
-  <select id="findByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="findByName" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
@@ -34,12 +34,13 @@
       )
   </insert>
 
-  <insert id="insertUser"  >
+  <insert id="insertUser">
     insert into user (id, name, password
     )
-    values (id, #{username,jdbcType=VARCHAR}, #{password2,jdbcType=VARCHAR}
+    values (id, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
     )
   </insert>
+
   <insert id="insertSelective" parameterType="com.wyc.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >

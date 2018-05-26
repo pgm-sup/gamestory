@@ -1,5 +1,8 @@
 package com.wyc.model;
 
+/**
+ * @author haima
+ */
 public class GameInfo {
     private Integer id;
 
