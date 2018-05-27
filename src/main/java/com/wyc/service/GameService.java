@@ -23,4 +23,6 @@ public interface GameService {
     HardWare queryHardWareById(Integer id);
 
     List<HardWare> AllHardWare(int pageNum, int pageSize);
+
+    String queryRank(String type);
 }

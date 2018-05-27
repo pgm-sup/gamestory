@@ -54,4 +54,9 @@ public class GameServiceImpl implements GameService{
         PageHelper.startPage(pageNum, pageSize);
         return hardWareMapper.selectAllHardWare();
     }
+
+    @Override
+    public String queryRank(String type) {
+        return hardWareMapper.queryRank(type);
+    }
 }

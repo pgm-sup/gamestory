@@ -36,6 +36,12 @@ public class GameController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/queryHardWareRank/{type}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    public String queryCommentById(@PathVariable("type")  String type){
+        return gameService.queryRank(type);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/queryHardWareById/{id}", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public HardWare queryHardWareById(@PathVariable("id")  Integer id){
         return gameService.queryHardWareById(id);

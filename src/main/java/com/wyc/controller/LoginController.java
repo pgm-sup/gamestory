@@ -20,10 +20,8 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    boolean userLogin(@RequestParam("username")String username, @RequestParam("password")String password) {
-        System.out.println(username);
-        System.out.println(password);
-        boolean verify = userService.verifyUser(username, password);
+    String userLogin(@RequestParam("username")String username, @RequestParam("password")String password) {
+        String verify = userService.verifyUser(username, password);
         return verify;
     }
 

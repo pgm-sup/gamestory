@@ -24,6 +24,12 @@
     <include refid="Base_Column_List" />
     from hardware
   </select>
+
+  <select id="queryRank" resultType="java.lang.String">
+    select
+      rank
+    from cpuandgpu WHERE `type` = #{type,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hardware
     where id = #{id,jdbcType=INTEGER}

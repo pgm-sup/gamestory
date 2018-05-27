@@ -2,6 +2,7 @@ package com.wyc.mapper;
 
 import com.wyc.model.HardWare;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 /**
@@ -22,4 +23,6 @@ public interface HardWareMapper {
     int updateByPrimaryKey(HardWare record);
 
     List<HardWare> selectAllHardWare();
+
+    String queryRank(@Param("type") String type);
 }

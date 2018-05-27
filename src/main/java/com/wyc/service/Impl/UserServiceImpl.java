@@ -18,17 +18,17 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
     @Override
-    public boolean verifyUser(String username, String password) {
+    public String verifyUser(String username, String password) {
         List<User> users = userMapper.findByName(username);
         if (users.isEmpty()) {
-            return false;
+            return "false";
         }
         for (User user : users) {
             if(password.equals(user.getPassword())){
-                return true;
+                return String.valueOf(user.getId());
             }
         }
-        return false;
+        return "false";
     }
 
     @Override
